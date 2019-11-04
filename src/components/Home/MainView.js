@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import ArticleList from '../ArticleList';
 import React from 'react';
 import agent from '../../agent';
