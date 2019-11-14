@@ -24,9 +24,10 @@ describe('Navigation', function() {
 
     cy.log('Logging in')
     cy.visit('/login')
-    cy.get('input[type=email]').type('cypress@devoxx.fr')
-    cy.get('input[type=password]').type('cypressdevoxx{enter}')
+    cy.get('input[type=email]').type(Cypress.env().email)
+    cy.get('input[type=password]').type(Cypress.env().password + '{enter}')
     cy.url().should('contain', '/')
+    cy.contains(Cypress.env().name).should('exist')
     cy.contains('Global Feed').should('be.visible')
   })
 })

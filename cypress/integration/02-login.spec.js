@@ -1,7 +1,7 @@
 describe('Login page', function() {
   it('should display nicely', function() {
     cy.visit('/login')
-    // TODO check the 'Sign in' label is visibke
+    // TODO check the 'Sign in' label is visible
 
     // TODO check the form is nicely displayed (email, password, submit button)
   })
@@ -28,6 +28,6 @@ describe('Login page', function() {
 
   it('should redirect to homepage when logging is successful', function() {
     cy.visit('/login')
-    // TODO happy path : use cypress@devoxx.fr/cypressdevoxx to fill the form and ensure you are logged
+    // TODO happy path : use Cypress.env().email/Cypress.env().password to fill the form and ensure you are logged
   })
 })

@@ -1,6 +1,8 @@
 {
   "baseUrl": "http://localhost:4100",
-  "username": "TODO USERNAME",
-  "password":"TODO PASSWORD",
-  "email":"TODO EMAIL"
+  "env": {
+    "email": "crafts@records.org",
+    "name": "Crafts Records",
+    "password": "Soleil123"
+  }
 }

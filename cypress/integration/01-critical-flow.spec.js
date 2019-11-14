@@ -30,9 +30,9 @@ describe('Navigation', function() {
     cy.log('Logging in')
     // TODO go to login page
 
-    // TODO enter the cypress@devoxx.fr email
+    // TODO enter the email defined in cypress configuration
 
-    // TODO enter the cypressdevoxx password
+    // TODO enter the password defined in cypress configuration
 
     // TODO check that the redirection to the home occurred
   })

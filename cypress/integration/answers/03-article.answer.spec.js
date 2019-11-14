@@ -72,9 +72,17 @@ describe('Article page', function() {
     })
   })
 
-  context('In an authenticated context', function() {
+  context.skip('In an authenticated context', function() {
     beforeEach(function() {
-      cy.login('cypress@devoxx.fr', 'cypressdevoxx')
+      // TODO: to delete on the custom command "login" is implemented
+      cy.visit('/login')
+      cy.get('input[type=email]').type(Cypress.env().email)
+      cy.get('input[type=password]').type(Cypress.env().password + '{enter}')
+      cy.url().should('contain', '/')
+      cy.contains(Cypress.env().name).should('exist')
+
+      // TODO: uncomment this once you have implemented the custom command
+      // cy.login(Cypress.env().email, Cypress.env().password)
 
       cy.server()
       cy.route('/api/articles/*', 'fixture:/article/cypress-is-cool.json').as(
@@ -122,7 +130,7 @@ describe('Article page', function() {
             updatedAt: '2019-03-16T23:33:59.621Z',
             body: comment,
             author: {
-              username: 'Devoxx',
+              username: 'Crafts Records',
               bio: null,
               image:
                 'https://static.productionready.io/images/smiley-cyrus.jpg',
@@ -141,47 +149,6 @@ describe('Article page', function() {
       cy.get('@comments')
         .eq(1)
         .should('contain', comment)
-    })
-
-    it('should save comments to file', function() {
-      const comment = 'Where is the documentation ?'
-      cy.route('/api/articles/*/comments', { comments: [] })
-      cy.route({
-        method: 'POST',
-        status: 201,
-        url: '/api/articles/*/comments',
-        response: {
-          comment: {
-            id: 36721,
-            createdAt: '2019-03-16T23:33:59.621Z',
-            updatedAt: '2019-03-16T23:33:59.621Z',
-            body: comment,
-            author: {
-              username: 'Devoxx',
-              bio: null,
-              image:
-                'https://static.productionready.io/images/smiley-cyrus.jpg',
-              following: false,
-            },
-          },
-        },
-      }).as('postComment')
-
-      cy.get('textarea').type(comment)
-      cy.get('button[type=submit]').click()
-      cy.wait('@postComment').then(xhr => {
-        cy.exec(
-          `echo ${JSON.stringify(
-            xhr.responseBody,
-          )} > cypress/fixtures/comments/save-comment.json`,
-        )
-        // MAC, LINUX
-        // cy.exec(`echo '${JSON.stringify(xhr.responseBody)}' > cypress/fixtures/comments/save-comment.json`)
-        cy.fixture('comments/save-comment.json').should(
-          'deep.eq',
-          xhr.responseBody,
-        )
-      })
     })
 
     it('should allow user to delete his comment', function() {

@@ -46,7 +46,7 @@ describe('Article page', function() {
     })
   })
 
-  context('In an authenticated context', function() {
+  context.skip('In an authenticated context', function() {
     beforeEach(function() {
       // TODO Login
       // You can first try with the login page
@@ -98,7 +98,7 @@ describe('Article page', function() {
             updatedAt: '2019-03-16T23:33:59.621Z',
             body: comment,
             author: {
-              username: 'Devoxx',
+              username: 'Crafts Records',
               bio: null,
               image:
                 'https://static.productionready.io/images/smiley-cyrus.jpg',

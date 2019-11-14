@@ -1,4 +1,4 @@
-import Banner from '../../../../../../src/components/Home/Banner'
+import Banner from '../../src/components/Home/Banner'
 import React from 'react'
 import { mount } from 'cypress-react-unit-test'
 
